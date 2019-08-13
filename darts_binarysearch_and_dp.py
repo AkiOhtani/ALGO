@@ -16,7 +16,7 @@ for numi in P:
 
 combP = sorted(list(combP))
 
-count = [0]
+count = []
 
 for numi in combP:
     num = M - numi
