@@ -11,4 +11,5 @@ res = []
 
 dfs(res, 0, [], S)
 
+
 print(sum(int(num) for nums in res for num in nums))
