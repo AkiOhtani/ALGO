@@ -12,8 +12,9 @@ for i in range(R):
 
 visited = set([])
 que = deque()
-que.append((sy-1, sx-1))
 depth_dict = defaultdict(int)
+
+que.append((sy-1, sx-1))
 depth_dict[(sy-1, sx-1) ] = 0
 minDepth = 2**23 - 1 
 
@@ -31,6 +32,7 @@ while que:
             continue
         elif node[0] + i == gy - 1 and node[1] + j == gx - 1:
             minDepth = min(minDepth, depth_dict[(node[0], node[1])] + 1)
+            que = None
             break
         else:
             que.append((node[0] + i, node[1] + j))
