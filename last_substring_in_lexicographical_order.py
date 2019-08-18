@@ -3,7 +3,6 @@ class Solution:
         if not s:
             return s
         prev = 0
-        start_index = 0
         res = [s]
         for i in range(len(s)):
             if s[prev] < s[i]:
