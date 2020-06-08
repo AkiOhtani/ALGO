@@ -15,7 +15,7 @@ class Solution:
 
         start, end = 0, 1
         
-        res = ''
+        res = [0, float('inf')]
         
         while start < end < len(s) + 1:
             flag = True
@@ -25,8 +25,8 @@ class Solution:
                     flag = False
                     break
             if flag:
-                if not res or len(res) > len(s[start:end]):
-                    res = s[start:end]
+                if res[1] - res[0] > end - start:
+                    res = start, end
                 if s[start] in t:
                     head_dict[s[start]] += 1
                 start += 1
@@ -35,4 +35,4 @@ class Solution:
                     tail_dict[s[end]] += 1
                 end += 1
                 
-        return res
+        return s[res[0]:res[1]] if res[1] != float('inf') else ""
