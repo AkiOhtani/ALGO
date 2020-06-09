@@ -3,16 +3,18 @@ class Solution:
         if not matrix:
             return 0
         res = 0
+        dp = [[0 for j in matrix[0]]+[0]]
+        for i in range(len(matrix)):
+            dp.append([0])
         
         for i in range(len(matrix)):
             for j in range(len(matrix[0])):
-                boolean = True
-                for k in range(min(len(matrix)-i+1, len(matrix[0])-j+1)):
-                    for l in range(k**2):
-                        if matrix[i+l//k][j+l%k] == '0':
-                            boolean = False
-                            break
-                    if not boolean:
-                        break
-                    res = max(res, k**2)
+                dp[i+1].append(int(matrix[i-1][j]))
+        
+        for i in range(len(matrix)+1):
+            for j in range(len(matrix[0])+1):
+                if dp[i][j] == 1:
+                    dp[i][j] = min(dp[i][j], min(dp[i-1][j-1], min(dp[i-1][j], dp[i][j-1]))) + 1
+                    res = max(res, dp[i][j])
         return res
+                
