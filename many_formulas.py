@@ -1,15 +1,15 @@
-from functools import reduce
 S = input()
 
-def dfs(res, depth, path, S):
-    if len(''.join(path)) == len(S):
-        res.append(path)
-    for i in range(depth + 1, len(S) + 1):
-        dfs(res, i, path + [S[depth:i]], S)
+res = [[S[0]]]
 
-res = []
+for c in S[1:]:
+    buf = []
+    for dp in res[-1]:
+        buf.append(dp+c)
+        buf.append(dp+'+'+c)
+    res.append(buf)
+sum_num = 0
 
-dfs(res, 0, [], S)
-
-
-print(sum(int(num) for nums in res for num in nums))
+for string in res[-1]:
+    sum_num += sum(map(int, string.split('+')))
+print(sum_num)
