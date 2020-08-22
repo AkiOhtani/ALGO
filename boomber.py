@@ -15,6 +15,7 @@ res = 0
 
 m = 0 
 
-for r, c in mass:
-    res = max(res, maxr[r]+maxc[c] - int((r, c) in mass))
+for r in maxr.keys():
+    for c in maxc.keys():
+        res = max(res, maxr[r]+maxc[c] - int((r, c) in mass))
 print(res)
